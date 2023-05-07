@@ -160,13 +160,18 @@ onMounted(async () => {
       'code codesample preview searchreplace autolink directionality visualblocks visualchars fullscreen image link media template table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount autosave ',
     line_height_formats: '1 1.2 1.4 1.6 2', //行高
 
+    allow_conditional_comments: true,
+    formats: {
+      code: { block: 'p', styles: { 'background-color': 'lightgray' } },
+      blockquote: { block: 'p', styles: { 'border-left': '2px solid #ccc', 'margin-left': '1.5rem', 'padding-left': '1rem' } },
+    },
+
+
     // images_file_types: 'jpeg,jpg,png,gif,bmp',
     // //images_upload_handler: editorUploadImage(blobInfo, 100),
 
-    // branding: false, //tiny技术支持信息是否显示
-    // statusbar: false, //最下方的元素路径和字数统计那一栏是否显示
     // elementpath: false, //元素路径是否显示
-    // custom_undo_redo_levels: 10, //撤销和重做的次数
+    custom_undo_redo_levels: 10, //撤销和重做的次数
     // draggable_modal: true, //对话框允许拖拽
 
   }); //初始化
