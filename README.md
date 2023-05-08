@@ -39,4 +39,4 @@ npm run dev
 npm run build
 ```
 
-上分奇迹
+这个项目是OSPP opentiny 家的富文本编辑器项目。可能存在的问题以及最终解决方案未必在这里。
