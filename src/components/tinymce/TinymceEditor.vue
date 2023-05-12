@@ -4,42 +4,42 @@ import { computed, onMounted, onUnmounted } from 'vue';
 import tinymce from 'tinymce/tinymce'; //tinymce核心文件
 // import Editor from '@tinymce/tinymce-vue';
 
-import './models/dom/model.min.js'; // 引入dom模块。从 Tinymce6，开始必须有此模块导入
-import './themes/silver/theme.min.js'; //默认主题
-import './icons/default/icons.min.js'; //引入编辑器图标icon，不引入则不显示对应图标
+import 'tinymce/models/dom/model.min.js'; // 引入dom模块。从 Tinymce6，开始必须有此模块导入
+import 'tinymce/themes/silver/theme.min.js'; //默认主题
+import 'tinymce/icons/default/icons.min.js'; //引入编辑器图标icon，不引入则不显示对应图标
 import './langs/zh-Hans.js'; //引入编辑器语言包
-import './skins/content/default/content.min.css'
-import './skins/ui/oxide/skin.min.css'
+import 'tinymce/skins/content/default/content.min.css'
+import 'tinymce/skins/ui/oxide/skin.min.css'
 
-import './plugins/advlist/plugin.min.js'; //高级列表
-import './plugins/anchor/plugin.min.js'; //锚点
-import './plugins/autolink/plugin.min.js'; //自动链接
-import './plugins/autoresize/plugin.min.js'; //编辑器高度自适应,注：plugins里引入此插件时，Init里设置的height将失效
-import './plugins/autosave/plugin.min.js'; //自动存稿
-import './plugins/charmap/plugin.min.js'; //特殊字符
-import './plugins/code/plugin.min.js'; //编辑源码
-import './plugins/codesample/plugin.min.js'; //代码示例
-import './plugins/directionality/plugin.min.js'; //文字方向
-import './plugins/emoticons/plugin.min.js'; //表情
-import './plugins/fullscreen/plugin.min.js'; //全屏
-import './plugins/help/plugin.min.js'; //帮助
-import './plugins/image/plugin.min.js'; //插入编辑图片
-import './plugins/importcss/plugin.min.js'; //引入css
-import './plugins/insertdatetime/plugin.min.js'; //插入日期时间
-import './plugins/link/plugin.min.js'; //超链接
-import './plugins/lists/plugin.min.js'; //列表插件
-import './plugins/media/plugin.min.js'; //插入编辑媒体
-import './plugins/nonbreaking/plugin.min.js'; //插入不间断空格
-import './plugins/pagebreak/plugin.min.js'; //插入分页符
-import './plugins/preview/plugin.min.js'; //预览
-import './plugins/quickbars/plugin.min.js'; //快速工具栏
-import './plugins/save/plugin.min.js'; //保存
-import './plugins/searchreplace/plugin.min.js'; //查找替换
-import './plugins/table/plugin.min.js'; //表格
-import './plugins/template/plugin.min.js'; //内容模板
-import './plugins/visualblocks/plugin.min.js'; //显示元素范围
-import './plugins/visualchars/plugin.min.js'; //显示不可见字符
-import './plugins/wordcount/plugin.min.js'; //字数统计
+import 'tinymce/plugins/advlist/plugin.min.js'; //高级列表
+import 'tinymce/plugins/anchor/plugin.min.js'; //锚点
+import 'tinymce/plugins/autolink/plugin.min.js'; //自动链接
+import 'tinymce/plugins/autoresize/plugin.min.js'; //编辑器高度自适应,注：plugins里引入此插件时，Init里设置的height将失效
+import 'tinymce/plugins/autosave/plugin.min.js'; //自动存稿
+import 'tinymce/plugins/charmap/plugin.min.js'; //特殊字符
+import 'tinymce/plugins/code/plugin.min.js'; //编辑源码
+import 'tinymce/plugins/codesample/plugin.min.js'; //代码示例
+import 'tinymce/plugins/directionality/plugin.min.js'; //文字方向
+import 'tinymce/plugins/emoticons/plugin.min.js'; //表情
+import 'tinymce/plugins/fullscreen/plugin.min.js'; //全屏
+import 'tinymce/plugins/help/plugin.min.js'; //帮助
+import 'tinymce/plugins/image/plugin.min.js'; //插入编辑图片
+import 'tinymce/plugins/importcss/plugin.min.js'; //引入css
+import 'tinymce/plugins/insertdatetime/plugin.min.js'; //插入日期时间
+import 'tinymce/plugins/link/plugin.min.js'; //超链接
+import 'tinymce/plugins/lists/plugin.min.js'; //列表插件
+import 'tinymce/plugins/media/plugin.min.js'; //插入编辑媒体
+import 'tinymce/plugins/nonbreaking/plugin.min.js'; //插入不间断空格
+import 'tinymce/plugins/pagebreak/plugin.min.js'; //插入分页符
+import 'tinymce/plugins/preview/plugin.min.js'; //预览
+import 'tinymce/plugins/quickbars/plugin.min.js'; //快速工具栏
+import 'tinymce/plugins/save/plugin.min.js'; //保存
+import 'tinymce/plugins/searchreplace/plugin.min.js'; //查找替换
+import 'tinymce/plugins/table/plugin.min.js'; //表格
+import 'tinymce/plugins/template/plugin.min.js'; //内容模板
+import 'tinymce/plugins/visualblocks/plugin.min.js'; //显示元素范围
+import 'tinymce/plugins/visualchars/plugin.min.js'; //显示不可见字符
+import 'tinymce/plugins/wordcount/plugin.min.js'; //字数统计
 
 const props = defineProps({
   modelValue: {
@@ -51,38 +51,55 @@ const props = defineProps({
     type: [Boolean, String],
     default: 'file edit insert view format table tools help',
   },
-
   height: {
     type: Number,
     default: 400,
   },
-  width: {
-    type: Number,
-    default: 600,
-  },
+  // width: {
+  //   type: Number,
+  //   default: 700,
+  // },
   id: {
     type: [String, Number],
     default: 'myTinymce',
   },
 });
 
-const emit = defineEmits(['update:modelValue']);
+const props = withDefaults(defineProps<{
+  modelValue: string,
+  menubar: [Boolean, String],
+  height: number,
+  width: number,
+  id: [string, number]
+}>(), {
+  modelValue: '',
+  menubar: 'file edit insert view format table tools help',
+
+})
+
+
+
+// const emits = defineEmits(['update:modelValue']);
+
+const emits = defineEmits<{
+  (e: 'update:modelValue'): void
+}>()
 
 let contentValue = computed({
   get() {
     return props.modelValue;
   },
   set(value) {
-    emit('update:modelValue', value);
+    emits('update:modelValue', value);
   },
 });
 
 //代码表格格式刷引用图片
-onMounted(async () => {
+onMounted(() => {
   tinymce.init({
     selector: '#textarea',
     language: 'zh-Hans', //汉化
-    width: props.width,
+    // width: props.width,
     height: props.height,
     branding: false,
     // ?
