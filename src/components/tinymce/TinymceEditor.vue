@@ -41,6 +41,7 @@ import 'tinymce/plugins/visualblocks/plugin.min.js'; //显示元素范围
 import 'tinymce/plugins/visualchars/plugin.min.js'; //显示不可见字符
 import 'tinymce/plugins/wordcount/plugin.min.js'; //字数统计
 
+// 类型和逻辑代码到时再拆，因为现在连导出都没有，换成defineComponent和tinyvue的api
 const props = defineProps({
   modelValue: {
     type: String,
@@ -197,6 +198,8 @@ onUnmounted(() => {
   tinymce.remove(); //销毁
 });
 </script>
+
+<!-- 模板和css到时再拆 -->
 <template>
   <div class="tinymce-box">
     <textarea id="textarea" v-model="contentValue" />
